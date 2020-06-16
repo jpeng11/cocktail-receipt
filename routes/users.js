@@ -1,9 +1,18 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const homeCtrl = require("../controllers/home");
+const usersCtrl = require("../controllers/users");
+
+const isLoggedIn = require("./middleware/isLoggedIn");
+
+router.get("/", homeCtrl.index);
+
+// user auth
+router.get("/login", usersCtrl.loginForm);
+router.post("/login", usersCtrl.login);
+router.get("/signup", usersCtrl.signupForm);
+router.post("/signup", usersCtrl.signup);
+router.get("/logout", usersCtrl.logout);
 
 module.exports = router;
