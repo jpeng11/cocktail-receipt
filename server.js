@@ -11,9 +11,10 @@ const MongoStore = require("connect-mongo")(session);
 
 // connect to the database with Mongoose
 require("./config/database");
+require("./config/passport");
 
 var indexRouter = require("./routes/index");
-//var usersRouter = require("./routes/users");
+var usersRouter = require("./routes/users");
 
 var app = express();
 
@@ -27,8 +28,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: new MongoStore({ url: process.env.DATABASE_URL }),
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// makes user available in all EJS views
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
 app.use("/", indexRouter);
-//app.use("/users", usersRouter);
+app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
