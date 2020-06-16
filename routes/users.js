@@ -1,10 +1,10 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
 const homeCtrl = require("../controllers/home");
 const usersCtrl = require("../controllers/users");
 
-const isLoggedIn = require("./middleware/isLoggedIn");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.get("/", homeCtrl.index);
 

@@ -10,11 +10,7 @@ module.exports = {
 };
 
 function loginForm(req, res) {
-  res.render("users/login", {
-    heading: "Please Login",
-    postUrl: "/login",
-    btnText: "Sign In",
-  });
+  res.render("users/login");
 }
 
 function login(req, res, next) {
@@ -44,11 +40,7 @@ function login(req, res, next) {
 }
 
 function signupForm(req, res) {
-  res.render("users/signup", {
-    heading: "Please Sign Up",
-    postUrl: "/signup",
-    btnText: "Sign Up",
-  });
+  res.render("users/signup");
 }
 
 async function signup(req, res, next) {
@@ -69,6 +61,8 @@ async function signup(req, res, next) {
 }
 
 function logout(req, res) {
-  req.logout();
-  res.redirect("/");
+  req.session.destroy(function (err) {
+    req.user = null;
+    res.redirect("/");
+  });
 }
