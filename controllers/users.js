@@ -14,17 +14,15 @@ function loginForm(req, res) {
 }
 
 function login(req, res, next) {
-  // or skip the strategy
   User.findOne({ email: req.body.email })
     .select("+password")
     .exec(function (err, user) {
       if (err) {
-        // could change to redirect back to form with error message
         return next(err);
       }
       if (!user) {
-        // could change to redirect back to form with error message
-        return next(Error("Invalid Credentials"));
+        return res.redirect("/");
+        // return next(Error("Invalid Credentials"));
       }
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch) {
@@ -32,9 +30,10 @@ function login(req, res, next) {
             if (err) return next(err);
             return res.redirect("/");
           });
+        } else {
+          // could change to redirect back to form with error message
+          return next(Error("Invalid Credentials"));
         }
-        // could change to redirect back to form with error message
-        return next(Error("Invalid Credentials"));
       });
     });
 }
