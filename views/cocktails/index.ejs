@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cocktail</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script></script>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+
+    <div class="main row row-cols-3 row-cols-md-5">
+      <% cocktails.forEach(c => { %>
+      <div class="col mb-4">
+        <div class="card">
+          <img src="<%= c.drinkThumb %> " class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title"><%= c.name %></h5>
+            <p class="card-text">
+              <%= c.glass %>
+            </p>
+            <p class="card-text">
+              <%= c.alcoholic===true? 'Alcoholic Drink':"Non Alcoholic Drink" %>
+            </p>
+          </div>
+          <div class="card-footer text-right">
+            <a class="btn btn-outline-info btn-sm" href="/cocktails/<%= c._id%>"
+              >Show Detail</a
+            >
+          </div>
+        </div>
+      </div>
+      <% }) %> <% if (user) { %>
+      <div class="col mb-4">
+        <div class="card text-center">
+          <img
+            src="https://www.thecocktaildb.com/images/media/drink/vysuyq1441206297.jpg/preview"
+            class="card-img-top addCocktail"
+            alt="..."
+          />
+          <div class="card-body">
+            <a href="cocktail/new" class="btn btn-success btn-lg"
+              >Add Your Own Cocktail</a
+            >
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
