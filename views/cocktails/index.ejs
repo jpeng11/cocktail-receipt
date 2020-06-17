@@ -18,7 +18,7 @@
   <body>
     <%- include('../partials/navbar') %>
 
-    <div class="main row row-cols-3 row-cols-md-5">
+    <div class="card-deck main row row-cols-3 row-cols-md-5">
       <% cocktails.forEach(c => { %>
       <div class="col mb-4">
         <div class="card">
@@ -48,9 +48,13 @@
             alt="..."
           />
           <div class="card-body">
-            <a href="cocktail/new" class="btn btn-success btn-lg"
-              >Add Your Own Cocktail</a
-            >
+            <h5 class="card-title">Add your own cocktail</h5>
+            <p class="card-text"></p>
+            <p class="card-text"></p>
+            <a href="cocktail/new" class="btn btn-success">Add</a>
+          </div>
+          <div class="card-footer text-right">
+            <a class="" href="#"></a>
           </div>
         </div>
       </div>
