@@ -10,9 +10,9 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 router.get("/", homeCtrl.index);
 
 // user auth
-router.get("/login", usersCtrl.loginForm);
+//router.get("/login", usersCtrl.loginForm);
 router.post("/login", usersCtrl.login);
-router.get("/signup", usersCtrl.signupForm);
+//router.get("/signup", usersCtrl.signupForm);
 router.post("/signup", usersCtrl.signup);
 router.get("/logout", usersCtrl.logout);
 
