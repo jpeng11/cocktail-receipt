@@ -12,18 +12,8 @@ var cocktailSchema = new Schema({
   },
   ingredient: [
     {
-      ingredient1: String,
-      ingredient2: String,
-      ingredient3: String,
-      ingredient4: String,
-      ingredient5: String,
-      ingredient6: String,
-      measure1: String,
-      measure2: String,
-      measure3: String,
-      measure4: String,
-      measure5: String,
-      measure6: String,
+      measure: String,
+      ingredient: String,
     },
   ],
   drinkThumb: {
