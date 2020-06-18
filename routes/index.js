@@ -10,6 +10,7 @@ const homeCtrl = require("../controllers/home");
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
+router.get("/", homeCtrl.index);
 
 const isLoggedIn = require("../middleware/isLoggedIn");
 
