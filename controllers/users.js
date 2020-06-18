@@ -2,17 +2,10 @@ const passport = require("passport");
 const User = require("../models/user");
 
 module.exports = {
-  loginForm,
   login,
-  signupForm,
   signup,
   logout,
 };
-
-function loginForm(req, res) {
-  res.render("users/login");
-}
-
 function login(req, res, next) {
   User.findOne({ email: req.body.email })
     .select("+password")
@@ -36,10 +29,6 @@ function login(req, res, next) {
         }
       });
     });
-}
-
-function signupForm(req, res) {
-  res.render("users/signup");
 }
 
 async function signup(req, res, next) {
