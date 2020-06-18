@@ -51,7 +51,14 @@
             <h5 class="card-title">Add your own cocktail</h5>
             <p class="card-text"></p>
             <p class="card-text"></p>
-            <a href="cocktail/new" class="btn btn-success">Add</a>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#addCocktailModal"
+            >
+              Add
+            </button>
           </div>
           <div class="card-footer text-right">
             <a class="" href="#"></a>
@@ -59,6 +66,211 @@
         </div>
       </div>
       <% } %>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addCocktailModal"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addCocktailModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addCocktailModalLabel">
+              Add more cocktail
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <!-- Cocktail Name -->
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Cocktail Name:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cocktail-name"
+                  name="name"
+                  required
+                />
+              </div>
+              <!-- Alcoholic Drink -->
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Contain Alcohol:</label
+                >
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="alcoholic"
+                    id="yes"
+                    value="yes"
+                    required
+                  />
+                  <label class="form-check-label" for="yes">
+                    Yes
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="alcoholic"
+                    id="no"
+                    value="no"
+                  />
+                  <label class="form-check-label" for="no">
+                    No
+                  </label>
+                </div>
+              </div>
+              <!-- Glass -->
+              <div class="form-group">
+                <label for="glass">Glass</label>
+                <select class="form-control" id="glass" name="glass">
+                  <option>Old-fashioned glass</option>
+                  <option selected>Cocktail glass</option>
+                  <option>Copper Mug</option>
+                  <option>Highball glass</option>
+                </select>
+              </div>
+              <!-- Image -->
+              <div class="form-group">
+                <label for="drinkThumb">Cocktail Image</label>
+                <textarea
+                  class="form-control"
+                  id="drinkThumb"
+                  rows="1"
+                  name="drinkThumb"
+                ></textarea>
+              </div>
+              <!-- Instruction -->
+              <div class="form-group">
+                <label for="instruction">Instruction</label>
+                <textarea
+                  class="form-control"
+                  id="instruction"
+                  rows="2"
+                  name="instruction"
+                ></textarea>
+              </div>
+              <!-- Ingredient -->
+              <div>
+                <div class="form-group row">
+                  <label for="ingredient" class="col-sm-3 col-form-label"
+                    >Ingredient 1</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="ingredient1"
+                      name="ingredient1"
+                      placeholder="measure + ingredient. Example: 1 oz Gin"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="ingredient" class="col-sm-3 col-form-label"
+                    >Ingredient 2</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="ingredient2"
+                      name="ingredient2"
+                      placeholder="measure + ingredient. Example: 1 oz Gin"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="ingredient" class="col-sm-3 col-form-label"
+                    >Ingredient 3</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="ingredient3"
+                      name="ingredient3"
+                      placeholder="measure + ingredient. Example: 1 oz Gin"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="ingredient" class="col-sm-3 col-form-label"
+                    >Ingredient 4</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="ingredient4"
+                      name="ingredient4"
+                      placeholder="measure + ingredient. Example: 1 oz Gin"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="ingredient" class="col-sm-3 col-form-label"
+                    >Ingredient 5</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="ingredient5"
+                      name="ingredient5"
+                      placeholder="measure + ingredient. Example: 1 oz Gin"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="ingredient" class="col-sm-3 col-form-label"
+                    >Ingredient 6</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="ingredient6"
+                      name="ingredient6"
+                      placeholder="measure + ingredient. Example: 1 oz Gin"
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
