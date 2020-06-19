@@ -18,6 +18,7 @@ router.get("/seed/success", cocktailCtrl.seedSuccess);
 
 // Auth route
 router.post("/login", usersCtrl.login);
+router.post("/cocktails/login", usersCtrl.login);
 router.post("/signup", usersCtrl.signup);
 router.get("/logout", usersCtrl.logout);
 

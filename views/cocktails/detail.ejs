@@ -13,7 +13,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <script></script>
+    <script defer src="/javascripts/home.js"></script>
   </head>
   <body>
     <%- include('../partials/navbar') %>
@@ -73,22 +73,204 @@
                 role="button"
                 >Back to List</a
               >
+              <button
+                type="button"
+                class="btn btn-outline-primary modifyBtn"
+                data-toggle="modal"
+                data-target="#editModal"
+              >
+                Modify
+              </button>
             </div>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <form action="" method="POST">
+                <h5 class="card-title">Comments:</h5>
+                <div class="form-group">
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    placeholder="Leave your comment"
+                  ></textarea>
+                </div>
+                <a href="#" class="btn btn-primary postBtn">Post</a>
+              </form>
+              <ul class="list-group commentUl">
+                <li class="list-group-item">Cras justo odio</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
+      <form action="/cocktails/<%= cocktail.id %>" method="POST">
+        <button
+          type="submit"
+          class="btn btn-outline-danger btn-sm removeButton"
+        >
+          Remove
+        </button>
+      </form>
     </div>
+
+    <div
+      class="modal fade"
+      id="editModal"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">
+              Modify Cocktail
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/cocktails/<%= cocktail.id %>/modify" method="POST">
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Cocktail Name:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cocktail-name"
+                  name="name"
+                  value="<%= cocktail.name%>"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Contain Alcohol:</label
+                >
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="alcoholic"
+                    id="yes"
+                    value="true"
+                    required
+                  />
+                  <label class="form-check-label" for="true">
+                    Yes
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="alcoholic"
+                    id="no"
+                    value="false"
+                    required
+                  />
+                  <label class="form-check-label" for="false">
+                    No
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="glass">Glass</label>
+                <select class="form-control" id="glass" name="glass">
+                  <option value="Old-fashioned glass"
+                    >Old-fashioned glass</option
+                  >
+                  <option value="Cocktail glass">Cocktail glass</option>
+                  <option value="Copper Mug">Copper Mug</option>
+                  <option value="Highball glass">Highball glass</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="drinkThumb">Cocktail Image</label>
+                <textarea
+                  class="form-control"
+                  id="drinkThumb"
+                  rows="1"
+                  name="drinkThumb"
+                >
+<%= cocktail.drinkThumb%></textarea
+                >
+              </div>
+              <div class="form-group">
+                <label for="instruction">Instruction</label>
+                <textarea
+                  class="form-control"
+                  id="instruction"
+                  rows="3"
+                  name="instruction"
+                >
+<%= cocktail.instruction%></textarea
+                >
+              </div>
+              <div class="ingredientList">
+                <% cocktail.ingredient.forEach((i,index) => { %>
+                <div class="form-group row">
+                  <label for="ingredient" class="col-sm-3 col-form-label"
+                    >Ingredient <%= index+1%></label
+                  >
+                  <div class="col-sm-4">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="measure"
+                      name="measure"
+                      placeholder="Ex: 1 oz"
+                      value="<%= i.measure %>"
+                    />
+                  </div>
+                  <div class="col-sm-5">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="ingredient"
+                      name="ingredient"
+                      placeholder="Example: Gin"
+                      value="<%= i.ingredient %>"
+                    />
+                  </div>
+                </div>
+                <% }) %>
+              </div>
+              <button class="btn btn-outline-info" id="addMore" type="button">
+                Add
+              </button>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("glass").value = `<%= cocktail.glass%>`;
+    </script>
   </body>
 </html>

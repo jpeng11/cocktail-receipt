@@ -13,13 +13,13 @@
       href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
     />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <script></script>
+    <script defer src="/javascripts/home.js"></script>
   </head>
   <body>
     <%- include('../partials/navbar') %>
 
     <div class="card-deck main row row-cols-3 row-cols-md-5">
-      <% cocktails.forEach(c => { %>
+      <% if(cocktails.length > 0) { %> <% cocktails.forEach(c => { %>
       <div class="col mb-4">
         <div class="card">
           <img src="<%= c.drinkThumb %> " class="card-img-top" alt="..." />
@@ -39,7 +39,22 @@
           </div>
         </div>
       </div>
-      <% }) %> <% if (user) { %>
+      <% }) } else {%>
+      <div class="col mb-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Database is empty, seed the database</h5>
+
+            <form action="/seed/cocktails" method="POST">
+              <button type="submit" class="btn btn-warning">Seed Data</button>
+            </form>
+          </div>
+          <div class="card-footer text-right">
+            <a class="" href="#"></a>
+          </div>
+        </div>
+      </div>
+      <% }%> <% if (user) { %>
       <div class="col mb-4">
         <div class="card text-center">
           <img
@@ -171,92 +186,34 @@
                 ></textarea>
               </div>
               <!-- Ingredient -->
-              <div>
+              <div class="ingredientList">
                 <div class="form-group row">
                   <label for="ingredient" class="col-sm-3 col-form-label"
-                    >Ingredient 1</label
+                    >Ingredient</label
                   >
-                  <div class="col-sm-9">
+                  <div class="col-sm-4">
                     <input
                       type="text"
                       class="form-control"
-                      id="ingredient1"
-                      name="ingredient1"
-                      placeholder="measure + ingredient. Example: 1 oz Gin"
+                      id="measure"
+                      name="measure"
+                      placeholder="Ex: 1 oz"
                     />
                   </div>
-                </div>
-                <div class="form-group row">
-                  <label for="ingredient" class="col-sm-3 col-form-label"
-                    >Ingredient 2</label
-                  >
-                  <div class="col-sm-9">
+                  <div class="col-sm-5">
                     <input
                       type="text"
                       class="form-control"
-                      id="ingredient2"
-                      name="ingredient2"
-                      placeholder="measure + ingredient. Example: 1 oz Gin"
-                    />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="ingredient" class="col-sm-3 col-form-label"
-                    >Ingredient 3</label
-                  >
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="ingredient3"
-                      name="ingredient3"
-                      placeholder="measure + ingredient. Example: 1 oz Gin"
-                    />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="ingredient" class="col-sm-3 col-form-label"
-                    >Ingredient 4</label
-                  >
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="ingredient4"
-                      name="ingredient4"
-                      placeholder="measure + ingredient. Example: 1 oz Gin"
-                    />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="ingredient" class="col-sm-3 col-form-label"
-                    >Ingredient 5</label
-                  >
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="ingredient5"
-                      name="ingredient5"
-                      placeholder="measure + ingredient. Example: 1 oz Gin"
-                    />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="ingredient" class="col-sm-3 col-form-label"
-                    >Ingredient 6</label
-                  >
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="ingredient6"
-                      name="ingredient6"
-                      placeholder="measure + ingredient. Example: 1 oz Gin"
+                      id="ingredient"
+                      name="ingredient"
+                      placeholder="Example: Gin"
                     />
                   </div>
                 </div>
               </div>
+              <button class="btn btn-outline-info" id="addMore" type="button">
+                Add
+              </button>
             </form>
           </div>
           <div class="modal-footer">

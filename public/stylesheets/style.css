@@ -36,6 +36,7 @@ a {
 #detailImg {
   width: 300px;
   height: 300px;
+  margin-bottom: 30px;
 }
 
 .list-group {
@@ -67,4 +68,18 @@ a {
 
 .detailButton {
   margin-top: 25px;
+}
+
+.removeButton,
+.modifyBtn {
+  float: right;
+  margin-top: 20px;
+}
+
+.postBtn {
+  float: right;
+}
+
+.commentUl {
+  margin-top: 70px;
 }

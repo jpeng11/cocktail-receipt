@@ -3,10 +3,20 @@ const bcrypt = require("bcrypt");
 
 const SALT_ROUNDS = 10;
 
+const commentSchema = new mongoose.Schema(
+  {
+    text: String,
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const userSchema = new mongoose.Schema(
   {
     email: { type: String, required: true, lowercase: true, unique: true },
     password: { type: String, select: false },
+    comments: [commentSchema],
     googleId: String,
   },
   {

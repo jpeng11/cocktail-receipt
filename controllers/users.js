@@ -6,6 +6,7 @@ module.exports = {
   signup,
   logout,
 };
+
 function login(req, res, next) {
   User.findOne({ email: req.body.email })
     .select("+password")

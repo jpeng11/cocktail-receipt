@@ -1,5 +1,6 @@
 const cocktailSeed = require("../config/drinks");
 const Cocktail = require("../models/cocktail");
+const axios = require("axios");
 
 module.exports = {
   seed,
@@ -7,8 +8,10 @@ module.exports = {
   index,
   show,
   create,
-  delete: removeOne,
+  removeOne,
   update,
+  addComment,
+  deleteComment,
 };
 
 function seedSuccess(req, res, next) {
@@ -19,8 +22,7 @@ async function seed(req, res, next) {
   await Cocktail.deleteMany({});
   Cocktail.insertMany(cocktailSeed.drinks)
     .then((drinks) => {
-      console.log(drinks.length + " cocktails inserted");
-      res.redirect("/seed/success");
+      res.redirect("/cocktails/index");
     })
     .catch((err) => next(err));
 }
@@ -43,14 +45,40 @@ function show(req, res) {
 /** Future plan:
  *  Create cocktail by fetch data from TheCocktailDB
  */
-function create(req, res) {
+async function create(req, res) {
   Cocktail.create({});
 }
 
 function removeOne(req, res) {
-  Cocktail.findByIdAndRemove({});
+  Cocktail.findByIdAndDelete(req.params.id, function (err, cocktail) {
+    res.redirect("/cocktails/index");
+  });
 }
 
-function update(req, res) {
-  Cocktail.findByIdAndUpdate({});
+async function update(req, res, next) {
+  console.log(req.body);
+  try {
+    await Cocktail.findByIdAndUpdate(req.params.id, {
+      $set: {
+        name: req.body.name,
+        alcoholic: req.body.alcoholic === "true" ? true : false,
+        glass: req.body.glass,
+        drinkThumb: req.body.drinkThumb,
+        instruction: req.body.instruction,
+        // ingredient: [
+        //   {
+        //     measure: req.body.measure,
+        //     ingredient: req.body.ingredient,
+        //   },
+        // ],
+      },
+    });
+    res.redirect(`/cocktails/${req.params.id}`);
+  } catch (error) {
+    return next(err);
+  }
 }
+
+function addComment(req, res) {}
+
+function deleteComment(req, res) {}
