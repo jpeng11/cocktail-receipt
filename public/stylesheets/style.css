@@ -83,3 +83,7 @@ a {
 .commentUl {
   margin-top: 70px;
 }
+
+.removeListBtn {
+  float: right;
+}

@@ -87,20 +87,42 @@
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body">
-              <form action="" method="POST">
+              <form
+                action="/cocktails/<%= cocktail.id %>/comment"
+                method="POST"
+              >
                 <h5 class="card-title">Comments:</h5>
                 <div class="form-group">
-                  <textarea
+                  <input
+                    type="text"
                     class="form-control"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
                     placeholder="Leave your comment"
-                  ></textarea>
+                    aria-label="comment"
+                    aria-describedby="basic-addon1"
+                    name="comments"
+                  />
                 </div>
-                <a href="#" class="btn btn-primary postBtn">Post</a>
+                <button type="submit" class="btn btn-primary postBtn">
+                  Post
+                </button>
               </form>
               <ul class="list-group commentUl">
-                <li class="list-group-item">Cras justo odio</li>
+                <% cocktail.comments.forEach(c => { %>
+
+                <form action="remove" method="POST">
+                  <li class="list-group-item">
+                    <span><%= c.comment %></span>
+                    <% if (user) { %> <% if (user.id == c.user) {%>
+                    <button
+                      type="submit"
+                      class="btn btn-sm btn-outline-danger removeListBtn"
+                    >
+                      X
+                    </button>
+                    <% } %>
+                  </li>
+                </form>
+                <% } %> <%})%>
               </ul>
             </div>
           </div>
@@ -160,6 +182,7 @@
                 <label for="recipient-name" class="col-form-label"
                   >Contain Alcohol:</label
                 >
+
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
@@ -271,6 +294,11 @@
     </div>
     <script>
       document.getElementById("glass").value = `<%= cocktail.glass%>`;
+      if (`<%= cocktail.alcoholic%> ===true`) {
+        document.getElementById("yes").checked = true;
+      } else {
+        document.getElementById("no").checked = true;
+      }
     </script>
   </body>
 </html>

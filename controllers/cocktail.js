@@ -1,6 +1,7 @@
 const cocktailSeed = require("../config/drinks");
 const Cocktail = require("../models/cocktail");
 const axios = require("axios");
+const User = require("../models/user");
 
 module.exports = {
   seed,
@@ -65,7 +66,9 @@ async function update(req, res, next) {
         glass: req.body.glass,
         drinkThumb: req.body.drinkThumb,
         instruction: req.body.instruction,
-        // ingredient: [
+        ingredient: {},
+
+        // [
         //   {
         //     measure: req.body.measure,
         //     ingredient: req.body.ingredient,
@@ -75,10 +78,33 @@ async function update(req, res, next) {
     });
     res.redirect(`/cocktails/${req.params.id}`);
   } catch (error) {
-    return next(err);
+    return next(error);
   }
 }
 
-function addComment(req, res) {}
+async function addComment(req, res, next) {
+  try {
+    await Cocktail.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: { comments: { comment: req.body.comments, user: req.user.id } },
+      },
+      { useFindAndModify: false }
+    );
+    res.redirect(`/cocktails/${req.params.id}`, { user: req.user }, 200);
+  } catch (error) {
+    return next(error);
+  }
+}
 
-function deleteComment(req, res) {}
+function deleteComment(req, res) {
+  console.log(req.body);
+  try {
+    // Cocktail.findByIdAndDelete(req.params.id, {
+    //   $pull: { comments: { comment: req.body.comments, user: req.user.id } },
+    // });
+    //res.redirect(`/cocktails/${req.params.id}`);
+  } catch (error) {
+    next(error);
+  }
+}
