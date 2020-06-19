@@ -15,12 +15,14 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <script></script>
   </head>
-  <body>
+  <body id="coverImg">
     <%- include('partials/navbar') %>
 
-    <a class="btn btn-success" href="cocktails/index">Show Cocktail</a>
+    <a class="btn btn-success btn-lg showBtn" href="cocktails/index"
+      >Show Cocktail</a
+    >
     <form action="/seed/cocktails" method="POST">
-      <button type="submit">Seed Data</button>
+      <button type="submit" hidden>Seed Data</button>
     </form>
   </body>
 </html>

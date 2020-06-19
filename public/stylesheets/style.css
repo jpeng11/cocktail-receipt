@@ -87,3 +87,18 @@ a {
 .removeListBtn {
   float: right;
 }
+
+#coverImg {
+  background: url("https://images.unsplash.com/photo-1514361892635-6b07e31e75f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.showBtn {
+  position: absolute;
+  top: 55%;
+  left: 47%;
+}
