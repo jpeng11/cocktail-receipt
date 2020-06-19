@@ -109,7 +109,7 @@
               <ul class="list-group commentUl">
                 <% cocktail.comments.forEach(c => { %>
 
-                <form action="remove" method="POST">
+                <form action="/comment/remove" method="POST">
                   <li class="list-group-item">
                     <span><%= c.comment %></span>
                     <% if (user) { %> <% if (user.id == c.user) {%>
