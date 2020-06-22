@@ -94,6 +94,7 @@
                 method="POST"
               >
                 <h5 class="card-title">Comments:</h5>
+                <% if (user) { %>
                 <div class="form-group">
                   <input
                     type="text"
@@ -107,15 +108,17 @@
                 <button type="submit" class="btn btn-primary postBtn">
                   Post
                 </button>
+                <%}%>
               </form>
               <ul class="list-group commentUl">
                 <% cocktail.comments.forEach(c => { %>
 
-                <form
-                  action="/<%= cocktail.id %>/comment/remove?"
+                
+                  <li class="list-group-item">
+                    <form
+                  action="/cocktails/<%= cocktail.id %>/comment/<%= c.id%>?_method=DELETE"
                   method="POST"
                 >
-                  <li class="list-group-item">
                     <span><%= c.comment %></span>
                     <% if (user) { %> <% if (user.id == c.user) {%>
                     <button

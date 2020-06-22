@@ -9,7 +9,7 @@ router.post("/:id", cocktailCtrl.removeOne);
 router.post("/:id/modify", cocktailCtrl.update);
 
 router.post("/:id/comment", cocktailCtrl.addComment);
-router.delete(":id/comment/:comment_id/remove", cocktailCtrl.deleteComment);
+router.delete("/:id/comment/:comment_id", cocktailCtrl.deleteComment);
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();

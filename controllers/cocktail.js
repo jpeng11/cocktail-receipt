@@ -108,13 +108,16 @@ async function addComment(req, res, next) {
   }
 }
 
-function deleteComment(req, res) {
+function deleteComment(req, res, next) {
   console.log(req.body);
   try {
-    // Cocktail.findByIdAndDelete(req.params.id, {
-    //   $pull: { comments: { comment: req.body.comments, user: req.user.id } },
-    // });
-    //res.redirect(`/cocktails/${req.params.id}`);
+    Cocktail.findById(req.params.id).then((result) => {
+      result.comments.pull(req.params.comment_id);
+      result.save(function (err) {
+        if (err) next(err);
+        res.redirect(`/cocktails/${req.params.id}`);
+      });
+    });
   } catch (error) {
     next(error);
   }
