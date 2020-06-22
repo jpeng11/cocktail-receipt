@@ -19,8 +19,8 @@ Visit [Cocktail Basket](https://cocktail-basket.herokuapp.com/). Login with Goog
 
 ## Screenshot
 
-![Cocktail List]()
-![Cocktail Detail]()
+![Cocktail List](https://imgur.com/008tD4E.png)
+![Cocktail Detail](https://imgur.com/x26nfPt.png)
 
 ## Next Steps
 
