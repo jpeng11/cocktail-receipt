@@ -55,6 +55,8 @@
                   <dt id="insTitle">Instruction:</dt>
                   <dd id="insText"><%= cocktail.instruction%></dd>
                   <hr class="my-4" />
+                  <dt id="insTitle">Instruction:</dt>
+                  <br />
                   <ul class="list-group">
                     <% for( let index = 0; index < cocktail.ingredient.length;
                     index++ ) { %>
@@ -109,7 +111,10 @@
               <ul class="list-group commentUl">
                 <% cocktail.comments.forEach(c => { %>
 
-                <form action="/comment/remove" method="POST">
+                <form
+                  action="/<%= cocktail.id %>/comment/remove?"
+                  method="POST"
+                >
                   <li class="list-group-item">
                     <span><%= c.comment %></span>
                     <% if (user) { %> <% if (user.id == c.user) {%>

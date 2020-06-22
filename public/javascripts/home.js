@@ -1,8 +1,10 @@
 var buttonEl = document.getElementById("addMore");
 var ingredientListEl = document.querySelector(".ingredientList");
-var ingredientItemEl = document.createElement("div");
-ingredientItemEl.className = "form-group row";
-ingredientItemEl.innerHTML = `<label for="ingredient" class="col-sm-3 col-form-label"
+
+buttonEl.addEventListener("click", function () {
+  var ingredientItemEl = document.createElement("div");
+  ingredientItemEl.className = "form-group row";
+  ingredientItemEl.innerHTML = `<label for="ingredient" class="col-sm-3 col-form-label"
 >Ingredient</label
 >
 <div class="col-sm-4">
@@ -23,7 +25,5 @@ ingredientItemEl.innerHTML = `<label for="ingredient" class="col-sm-3 col-form-l
   placeholder="Example: Gin"
 />
 </div>`;
-
-buttonEl.addEventListener("click", function () {
   ingredientListEl.appendChild(ingredientItemEl);
 });

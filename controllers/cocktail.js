@@ -57,7 +57,6 @@ function removeOne(req, res) {
 }
 
 async function update(req, res, next) {
-  console.log(req.body);
   try {
     await Cocktail.findByIdAndUpdate(req.params.id, {
       $set: {
@@ -66,14 +65,10 @@ async function update(req, res, next) {
         glass: req.body.glass,
         drinkThumb: req.body.drinkThumb,
         instruction: req.body.instruction,
-        ingredient: {},
-
-        // [
-        //   {
-        //     measure: req.body.measure,
-        //     ingredient: req.body.ingredient,
-        //   },
-        // ],
+        ingredient: req.body.measure.map((m, idx) => ({
+          measure: m,
+          ingredient: req.body.ingredient[idx],
+        })),
       },
     });
     res.redirect(`/cocktails/${req.params.id}`);
