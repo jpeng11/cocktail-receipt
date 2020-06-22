@@ -46,8 +46,24 @@ function show(req, res) {
 /** Future plan:
  *  Create cocktail by fetch data from TheCocktailDB
  */
-async function create(req, res) {
-  Cocktail.create({});
+async function create(req, res, next) {
+  console.log(req.body);
+  try {
+    await Cocktail.create({
+      name: req.body.name,
+      alcoholic: req.body.alcoholic === "true" ? true : false,
+      glass: req.body.glass,
+      drinkThumb: req.body.drinkThumb,
+      instruction: req.body.instruction,
+      ingredient: req.body.measure.map((m, idx) => ({
+        measure: m,
+        ingredient: req.body.ingredient[idx],
+      })),
+    });
+    res.redirect("/cocktails/index");
+  } catch (error) {
+    return next(error);
+  }
 }
 
 function removeOne(req, res) {
